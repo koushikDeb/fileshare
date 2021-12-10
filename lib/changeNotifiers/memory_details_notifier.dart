@@ -32,10 +32,11 @@ class MemoryDetailsNotifier extends ChangeNotifier{
   setFreeSpace(free);
   setTotalSpace(total);
   setUsedSpace(total - free);
-
+  print("freeLocal : $free totalLocal: $total");
   if (dirList.length > 1) {
   var freeSD = await platform.invokeMethod('getExternalStorageFreeSpace');
   var totalSD = await platform.invokeMethod('getExternalStorageTotalSpace');
+  print("freeSD : $freeSD totalSD: $totalSD");
   setFreeSDSpace(freeSD);
   setTotalSDSpace(totalSD);
   setUsedSDSpace(totalSD - freeSD);

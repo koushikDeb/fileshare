@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:fileshare/changeNotifiers/memory_details_notifier.dart';
@@ -9,10 +10,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
 
-class MemoryContent extends StatelessWidget {
+class MemoryContent extends StatefulWidget {
+  const MemoryContent({Key? key}) : super(key: key);
+
+
+
+  @override
+  _MemoryContentState createState() => _MemoryContentState();
+}
+
+class _MemoryContentState extends State<MemoryContent> {
+
   refresh(BuildContext context) async {
     await Provider.of<MemoryDetailsNotifier>(context, listen: false).checkSpace();
   }
+
+  @override
+  void initState() {
+    super.initState();
+    refresh(context);
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +54,7 @@ class MemoryContent extends StatelessWidget {
           ],
         ),
       ),
+
     );
   }
 }
